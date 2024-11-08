@@ -1,0 +1,51 @@
+<div class="container mt-5">
+
+    <!-- Inline Form for Creating Appointments -->
+    <div class="card shadow border-0 p-4">
+        <h2 class="text-center mb-4">Create New Appointment</h2>
+        <div class="d-flex align-items-center gap-3">
+
+            <!-- Appointment Description Input -->
+            <div class="flex-grow-1">
+                <label for="appointmentTitle" class="form-label">Appointment Description</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="description-icon"><i class="bi bi-pencil-square"></i></span>
+                    <input type="text" id="appointmentTitle" class="form-control" [(ngModel)]="newAppointmentTitle"
+                        aria-labelledby="description-icon" placeholder="Enter description"
+                        title="Appointment Description">
+                </div>
+            </div>
+
+            <!-- Appointment Date Input -->
+            <div>
+                <label for="appointmentDate" class="form-label">Appointment Date</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="date-icon"><i class="bi bi-calendar-event"></i></span>
+                    <input type="date" id="appointmentDate" class="form-control" [(ngModel)]="newAppointmentDate"
+                        aria-labelledby="date-icon" title="Select Appointment Date">
+                </div>
+            </div>
+
+            <!-- Add Button -->
+            <div>
+                <button class="btn btn-success mt-3" (click)="addAppointment()" aria-label="Add Appointment">
+                    <i class="bi bi-plus-circle"></i> Add
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Appointment List -->
+    <h2 class="text-center mt-5">Appointments</h2>
+    <ul class="list-group mt-4 shadow-sm rounded">
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let appointment of appointments; index as i">
+            <span>{{ appointment.title }} - <strong>{{ appointment.date | date:'dd.MM.yyyy' }}</strong></span>
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteAppointment(i)"
+                aria-label="Delete Appointment">
+                <i class="bi bi-trash"></i> Delete
+            </button>
+        </li>
+    </ul>
+
+</div>
